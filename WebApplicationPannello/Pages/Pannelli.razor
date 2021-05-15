@@ -7,17 +7,19 @@
             <th scope="col">Marca</th>
             <th scope="col">Modello</th>
             <th scope="col">PeakPower</th>
+            <th scope="col">Comandi</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in lpf)
+        @foreach (PannelloFV item in lpf)
         {
-            <tr>
-                <td> @item.IdPannello </td>
-                <td> @item.Marca </td>
-                <td> @item.Modello </td>
-                <td> @item.PeakPower </td>
-            </tr>
+        <tr>
+            <td> @item.IdPannello </td>
+            <td> @item.Marca </td>
+            <td> @item.Modello </td>
+            <td> @item.PeakPower </td>
+            <td> <a href="/pannelli/modifica/@item.IdPannello">Modifica</a> </td>
+        </tr>
         }
     </tbody>
 </table>
