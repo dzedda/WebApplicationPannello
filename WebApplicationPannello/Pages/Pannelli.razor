@@ -1,0 +1,30 @@
+﻿@page "/pannelli"
+<h3>Pannelli</h3>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modello</th>
+            <th scope="col">PeakPower</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lpf)
+        {
+            <tr>
+                <td> @item.IdPannello </td>
+                <td> @item.Marca </td>
+                <td> @item.Modello </td>
+                <td> @item.PeakPower </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+
+    List<PannelloFV> lpf = PannelloFV.ListaPannelli;
+
+}
