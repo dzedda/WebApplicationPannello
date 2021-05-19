@@ -1,12 +1,22 @@
 ﻿@page "/pannelli/modifica/{IdPannello:int}"
 <h3>ModificaPannello</h3>
+<PanelForm mioPannello="mioPannello" Salva="SaveChanges"></PanelForm>
 @IdPannello
 
 @code {
     [Parameter]
     public int IdPannello { get; set; }
     PannelloFV mioPannello;
+    protected override void OnInitialized()
+    {
+        mioPannello = new PannelloFV(IdPannello);
+    }
+    private void SaveChanges()
+        {
+        //codice che modifica i dati aggiurnati nel database
+        
 
+        }
 
 
 }

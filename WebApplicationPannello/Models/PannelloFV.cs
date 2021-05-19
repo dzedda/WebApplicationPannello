@@ -32,13 +32,13 @@ namespace WebApplicationPannello.Models
         }
 
         //costruttore che prende l'id pannello legge il database e restituisce l'oggetto con i valori letti dal db
-        public PannelloFV(int IdPannello)
+        public PannelloFV(int Id)
         {   //creo gli oggetti che mi servono per manipolare il database: 
             //connection: collega il db a c#
             SqliteConnection myConnection = new SqliteConnection("Data Source=fotovoltaico.db");
             //creo il command 
             SqliteCommand myCommand = new SqliteCommand("SELECT * FROM tblPannelli WHERE idPannello=@par1");
-            SqliteParameter myPar = new SqliteParameter("@par1", IdPannello);
+            SqliteParameter myPar = new SqliteParameter("@par1", Id);
             SqliteDataReader myDatareader;
             myCommand.Connection = myConnection;
             myCommand.Parameters.Add(myPar);
@@ -46,11 +46,10 @@ namespace WebApplicationPannello.Models
             myConnection.Open();
             myDatareader = myCommand.ExecuteReader();
             myDatareader.Read();
+            IdPannello= Id;
             Modello = myDatareader["Modello"].ToString();
             Marca= myDatareader["Marca"].ToString();
             PeakPower=Convert.ToDouble(myDatareader["PeakPower"]);
-
-
 
             myConnection.Close();
             
