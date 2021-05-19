@@ -9,6 +9,7 @@ namespace WebApplicationPannello.Models
 {
     public class PannelloFV
     {
+        //utile per creare un nuovo pannello e caricarlo sul database
         public PannelloFV(string Marca, string Modello, double PeakPower)
         {
             SqliteConnection myConnection = new SqliteConnection("Data Source=fotovoltaico.db");
@@ -29,7 +30,36 @@ namespace WebApplicationPannello.Models
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
-        
+
+        //costruttore che prende l'id pannello legge il database e restituisce l'oggetto con i valori letti dal db
+        public PannelloFV(int IdPannello)
+        {   //creo gli oggetti che mi servono per manipolare il database: 
+            //connection: collega il db a c#
+            SqliteConnection myConnection = new SqliteConnection("Data Source=fotovoltaico.db");
+            //creo il command 
+            SqliteCommand myCommand = new SqliteCommand("SELECT * FROM tblPannelli WHERE idPannello=@par1");
+            SqliteParameter myPar = new SqliteParameter("@par1", IdPannello);
+            SqliteDataReader myDatareader;
+            myCommand.Connection = myConnection;
+            myCommand.Parameters.Add(myPar);
+
+            myConnection.Open();
+            myDatareader = myCommand.ExecuteReader();
+            myDatareader.Read();
+            Modello = myDatareader["Modello"].ToString();
+            Marca= myDatareader["Marca"].ToString();
+            PeakPower=Convert.ToDouble(myDatareader["PeakPower"]);
+
+
+
+            myConnection.Close();
+            
+
+
+
+
+
+        }
         public PannelloFV() { }
 
 
