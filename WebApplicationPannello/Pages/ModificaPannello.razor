@@ -1,4 +1,5 @@
 ﻿@page "/pannelli/modifica/{IdPannello:int}"
+@inject NavigationManager UriHelper
 <h3>ModificaPannello</h3>
 <PanelForm mioPannello="mioPannello" Salva="SaveChanges"></PanelForm>
 @IdPannello
@@ -13,6 +14,8 @@
     }
     private void SaveChanges()
         {
+        mioPannello.Save();
+        UriHelper.NavigateTo("/pannelli");
         //codice che modifica i dati aggiurnati nel database
         
 

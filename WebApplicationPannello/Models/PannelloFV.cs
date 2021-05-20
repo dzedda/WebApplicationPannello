@@ -99,5 +99,39 @@ namespace WebApplicationPannello.Models
             } 
              
         }
+
+        public void Save()
+        {
+            SqliteConnection myConnection = new SqliteConnection("Data Source=fotovoltaico.db");
+            string sqlUpdate= @"UPDATE tblPannelli
+                SET
+                PeakPower = @par1,
+                Marca = @par2,
+                Modello = @par3
+                WHERE IdPannello = @par4;
+            ";
+            SqliteCommand myCommand = new SqliteCommand(sqlUpdate);
+            SqliteParameter myPar1 = new SqliteParameter("@par1", PeakPower);
+            SqliteParameter myPar2 = new SqliteParameter("@par2", Marca);
+            SqliteParameter myPar3 = new SqliteParameter("@par3", Modello);
+            SqliteParameter myPar4 = new SqliteParameter("@par4", IdPannello);
+            myCommand.Parameters.Add(myPar1);
+            myCommand.Parameters.Add(myPar2);
+            myCommand.Parameters.Add(myPar3);
+            myCommand.Parameters.Add(myPar4);
+
+            myCommand.Connection = myConnection;
+
+            myConnection.Open();
+            myCommand.ExecuteNonQuery();
+            myConnection.Close();
+
+
+
+
+
+
+
+        }
     }
 }
