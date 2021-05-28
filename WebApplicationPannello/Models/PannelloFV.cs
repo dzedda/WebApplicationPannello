@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
- 
+
 namespace WebApplicationPannello.Models
 {
     public class PannelloFV
@@ -69,6 +67,7 @@ namespace WebApplicationPannello.Models
         public string Marca { get; set; }
         [Required (ErrorMessage = "Il modello deve essere inserito.")]
         public string Modello { get; set; }
+
         private static List<PannelloFV> listaPannelli;
         public static List<PannelloFV> ListaPannelli {
             get 
